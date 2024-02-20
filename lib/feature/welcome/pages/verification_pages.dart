@@ -80,14 +80,14 @@ class VerificationPage extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 25),
-                maxLength: 6,
+                maxLength: 4,
               ),
             ),
             const SizedBox(
               height: 20,
             ),
             Text(
-              'Enter 6-Digit OTP code',
+              'Enter 4-Digit OTP code',
               style: TextStyle(color: context.theme.circleImageColor),
             ),
             Row(
