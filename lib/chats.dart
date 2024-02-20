@@ -3,8 +3,14 @@ import 'package:whatsapp/feature/welcome/widgets/info.dart';
 
 import 'chattingScreen.dart';
 
-class ContactsList extends StatelessWidget {
+class ContactsList extends StatefulWidget {
   const ContactsList({Key? key}) : super(key: key);
+
+  @override
+  State<ContactsList> createState() => _ContactsListState();
+}
+
+class _ContactsListState extends State<ContactsList> {
   @override
   Widget build(BuildContext contacts) {
     return Padding(
@@ -17,7 +23,7 @@ class ContactsList extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MyHomePage(),
+                    builder: (context) => MyHomePage(info[index]['name'].toString(),),
                   ),
                 );
               },

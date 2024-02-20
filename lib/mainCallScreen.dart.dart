@@ -2,16 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:whatsapp/chats.dart';
 import 'package:whatsapp/userProfile.dart';
 
+import 'chattingScreen.dart';
+import 'feature/welcome/widgets/info.dart';
+
 void main() {
   runApp(mainCallsScreen());
 }
 
-class mainCallsScreen extends StatelessWidget {
+class mainCallsScreen extends StatefulWidget {
+  @override
+  State<mainCallsScreen> createState() => _mainCallsScreenState();
+}
+
+class _mainCallsScreenState extends State<mainCallsScreen> {
   final List<Tab> myTabs = <Tab>[
     Tab(text: 'CHATS'),
     Tab(text: 'STATUS'),
     Tab(text: 'CALLS'),
   ];
+
+  late List<Map<String, String>> filteredContacts;
+
+  bool showSearchBox = false;
+
+  @override
+  void initState() {
+    super.initState();
+    filteredContacts = List.from(info);
+  }
+
+  void searchContacts(String query) {
+    setState(() {
+      filteredContacts = info
+          .where((contact) =>
+          contact['name']!.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +52,9 @@ class mainCallsScreen extends StatelessWidget {
               actions: [
                 IconButton(
                   onPressed: () {
-                    showSearch(
-                        context: context, delegate: CustomSearchDelegate());
+                    setState(() {
+                      showSearchBox = !showSearchBox;
+                    });
                   },
                   icon: const Icon(Icons.search),
                 ),
@@ -56,7 +84,68 @@ class mainCallsScreen extends StatelessWidget {
               ),
             ),
             body: TabBarView(children: [
-              ContactsList(),
+            Padding(
+            padding: const EdgeInsets.only(top: 10),
+              child: Column(
+                children:[
+                  Visibility(
+                    visible: showSearchBox,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        onChanged: searchContacts,
+                        decoration: InputDecoration(
+                          hintText: 'Search contacts',
+                          prefixIcon: Icon(Icons.search),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                  child: ListView.builder(
+                    itemCount: info.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MyHomePage(info[index]['name'].toString(),),
+                            ),
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(
+                            info[index]['name'].toString(),
+                            style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                color: Color.fromARGB(255, 230, 227, 227)),
+                          ),
+                          subtitle: Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: Text(
+                              info[index]['message'].toString(),
+                              style: const TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.normal),
+                            ),
+                          ),
+                          leading: CircleAvatar(
+                            backgroundImage: NetworkImage(
+                              info[index]['profilePic'].toString(),
+                            ),
+                          ),
+                          trailing: Text(
+                            info[index]['time'].toString(),
+                            style: const TextStyle(
+                                fontSize: 13, fontWeight: FontWeight.normal),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),]
+              )),
               Center(
                 child: Text('chats content'),
               ),

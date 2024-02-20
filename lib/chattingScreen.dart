@@ -18,7 +18,10 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../models/constants.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key});
+  final String name;
+
+  MyHomePage(this.name);
+  // const MyHomePage({Key? key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -70,157 +73,12 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: darkTheme ? MyColors.secondaryDark : MyColors.black,
         title: Text(
-          "ChatGPT ⚪",
+          widget.name,
           style: TextStyle(
             color: Colors.white, // Set text color to white
           ),
         ),
         iconTheme: IconThemeData(color: Colors.white),
-      ),
-      drawer: Drawer(
-        child: Container(
-          color: darkTheme ? MyColors.black : MyColors.white,
-          child: Column(
-            children: <Widget>[
-              Container(
-                height: size.height * 0.4,
-                child: DrawerHeader(
-                  decoration: BoxDecoration(
-                    color: darkTheme ? MyColors.black : MyColors.white,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        decoration: BoxDecoration(
-                          color: darkTheme ? MyColors.greyShadow : MyColors.lightGrey,
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: TextFormField(
-                          style: TextStyle(
-                            color: darkTheme ? MyColors.white : MyColors.black,
-                          ),
-                          decoration: InputDecoration(
-                            icon: Icon(
-                              Icons.search,
-                              color: darkTheme ? MyColors.white : MyColors.black,
-                            ),
-                            hintText: 'Search',
-                            hintStyle: TextStyle(
-                              color: darkTheme ? MyColors.white : MyColors.black,
-                            ),
-                            border: InputBorder.none,
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            darkTheme = !darkTheme;
-                          });
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                          height: size.height * 0.08,
-                          width: size.width,
-                          decoration: BoxDecoration(
-                            color: darkTheme ? MyColors.greyShadow : MyColors.lightPink,
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                "Chat GPT",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: darkTheme ? MyColors.white : MyColors.black,
-                                ),
-                              ),
-                              Icon(
-                                darkTheme ? Icons.light_mode : Icons.dark_mode,
-                                size: 30,
-                                color: darkTheme ? MyColors.white : MyColors.black,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: (){
-                          _launchWebsite('https://chat.openai.com/gpts');
-                        },
-                        child: Container(
-                          height: size.height * 0.08,
-                          width: size.width,
-                          decoration: BoxDecoration(
-                            color: darkTheme ? MyColors.greyShadow : MyColors.lightPink,
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                "Explore GPTs",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: darkTheme ? MyColors.white : MyColors.black,
-                                ),
-                              ),
-                              Image.asset(
-                                "./assets/icons/open-ai.png",
-                                width: size.width * 0.1,
-                                height: size.width * 0.1,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              Spacer(),
-              InkWell(
-                onTap: () {
-                },
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: darkTheme ? MyColors.greyShadow : MyColors.lightPink,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CircleAvatar(
-                        radius: 20,
-                        backgroundImage:
-                        CachedNetworkImageProvider(
-                          "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-                        ),
-                      ),
-                      Text(
-                        'Profile',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: darkTheme ? MyColors.white : MyColors.black,
-                        ),
-                      ),
-                      SizedBox(
-                          width: size.width * 0
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
       ),
       body: Chat(
         messages: _messages,

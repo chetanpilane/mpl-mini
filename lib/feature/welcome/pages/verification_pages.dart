@@ -9,6 +9,7 @@ import 'package:whatsapp/feature/auth/widgets/custom_text_field.dart';
 import 'package:whatsapp/feature/welcome/pages/user_info_pages.dart';
 
 class VerificationPage extends StatelessWidget {
+  TextEditingController otpController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +46,7 @@ class VerificationPage extends StatelessWidget {
                   children: [
                     TextSpan(
                       text:
-                          "You've tried to register +919892885090, before requesting an SMS or call with  code ",
+                          "You've tried to register +91 9136562312, before requesting an SMS or call with  code ",
                     ),
                     TextSpan(
                       text: 'Wrong number ?',
@@ -70,6 +71,7 @@ class VerificationPage extends StatelessWidget {
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: TextField(
+                controller: otpController, // Use a TextEditingController
                 decoration: InputDecoration(
                   hintText: ' Enter OTP',
                   hintStyle: TextStyle(fontSize: 25),
@@ -78,6 +80,7 @@ class VerificationPage extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 25),
+                maxLength: 6,
               ),
             ),
             const SizedBox(
@@ -108,19 +111,24 @@ class VerificationPage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: CustomElevatedButton(
         onPressed: () {
-          // Navigate to the next page when the "NEXT" button is pressed
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  UserInfoPage(), // Replace with the actual destination page
-            ),
-          );
+          // Check if entered OTP is '9999'
+          if (otpController.text == '9999') {
+            // Navigate to the next page when the "NEXT" button is pressed
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => UserInfoPage(),
+              ),
+            );
+          } else {
+            // Show an error message or take any other action
+            // For now, print an error message to the console
+            print('Invalid OTP. Please enter the correct OTP (9999).');
+          }
         },
         text: 'NEXT',
-        buttondWidth: 70, // Fix the property name
         textStyle: TextStyle(color: context.theme.authAppbartextColor),
-      ),
+      )
     );
   }
 }

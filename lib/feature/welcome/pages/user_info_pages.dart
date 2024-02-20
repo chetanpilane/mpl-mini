@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:whatsapp/common/extension/custon_theme_extension.dart';
 import 'package:whatsapp/common/widgets/custom_elevated_button.dart';
 import 'package:whatsapp/feature/auth/widgets/Custom_Icon.dart';
@@ -19,6 +20,25 @@ class UserInfoPage extends StatefulWidget {
 }
 
 class _UserInfoPageState extends State<UserInfoPage> {
+  File? _image;
+  final picker = ImagePicker();
+
+  Future getImageFromCamera() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+
+    setState(() {
+      _image = File(pickedFile!.path);
+    });
+  }
+
+  Future getImageFromGallery() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      _image = File(pickedFile!.path);
+    });
+  }
+
   imagePickerTypeBottomSheet() {
     return showModalBottomSheet(
         context: context,
@@ -108,20 +128,33 @@ class _UserInfoPageState extends State<UserInfoPage> {
             const SizedBox(
               height: 40,
             ),
-            Container(
+            GestureDetector(
+              onTap: () => imagePickerTypeBottomSheet(),
+              child: Container(
                 padding: EdgeInsets.all(30),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: context.theme.photoIconBgColor,
                 ),
-                child: Padding(
+                child: _image == null
+                    ? Padding(
                   padding: const EdgeInsets.only(bottom: 3, right: 3),
                   child: Icon(
                     Icons.add_a_photo_rounded,
                     size: 50,
                     color: context.theme.photoIconColor,
                   ),
-                )),
+                )
+                    : ClipOval(
+                  child: Image.file(
+                    _image!,
+                    width: 120,
+                    height: 120,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
             const SizedBox(
               height: 40,
             ),

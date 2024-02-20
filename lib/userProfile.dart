@@ -62,7 +62,7 @@ class _ProfileState extends State<Profile> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "JATIN TALREJA",
+                      "Chetan Pilane",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -82,7 +82,7 @@ class _ProfileState extends State<Profile> {
               ],
             ),
             SizedBox(height: 20),
-            _buildProfileRow(Icons.mail, "Email", "2021.jatin.talreja@ves.ac.in"),
+            _buildProfileRow(Icons.mail, "Email", "2021.chetan.pilane@ves.ac.in"),
             _buildProfileRow(Icons.phone, "Subscription", "Free plan"),
             _buildProfileRow(Icons.location_on, "Data Controls", "Data Added"),
             _buildProfileRow(Icons.architecture, "Archived Chats", "Archived Chats List"),
