@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp/chats.dart';
+import 'package:whatsapp/userProfile.dart';
 
 void main() {
   runApp(mainCallsScreen());
@@ -29,21 +30,15 @@ class mainCallsScreen extends StatelessWidget {
                   },
                   icon: const Icon(Icons.search),
                 ),
-                PopupMenuButton(
-                  itemBuilder: (BuildContext context) {
-                    return [
-                      const PopupMenuItem(
-                        child: Text('Settings'),
-                        value: 'settings',
-                      ),
-                    ];
+                InkWell(
+                  onTap: () {Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Profile(),
+                    ),
+                  );
                   },
-                  onSelected: (String choice) {
-                    if (choice == 'settings') {
-                      // Handle settings action here
-                    }
-                  },
-                  icon: const Icon(Icons.more_vert),
+                  child: Icon(Icons.more_vert),
                 ),
                 Icon(Icons.camera_alt_outlined),
                 SizedBox(
@@ -67,328 +62,328 @@ class mainCallsScreen extends StatelessWidget {
               ),
               Center(
                   child: ListView(children: <Widget>[
-                ListTile(
-                  title: Text('Recent'),
-                ),
-                ListTile(
-                  leading: CircleAvatar(
-                    foregroundImage: AssetImage('assets/images/kunal.png'),
-                  ),
-                  title: Text(
-                    'Kunal Patil',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.red),
-                  ),
-                  subtitle: Row(
-                    children: [
-                      Text(
-                        '5 minutes ago',
-                        style: TextStyle(color: Colors.grey, fontSize: 10),
-                      ),
-                      Icon(
-                        Icons.phone_missed_outlined,
-                        size: 10,
-                        color: Colors.red,
-                      ),
-                    ],
-                  ),
-                  trailing: Icon(
-                    Icons.call,
-                    color: Colors.green,
-                  ),
-                ),
-                ListTile(
-                  leading: CircleAvatar(
-                    foregroundImage: AssetImage('assets/images/vinit.png'),
-                  ),
-                  title: Text(
-                    'Vinit Solanki',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
-                  subtitle: Row(
-                    children: [
-                      Text(
-                        ' 20 minutes ago',
-                        style: TextStyle(color: Colors.grey, fontSize: 10),
-                      ),
-                      Icon(
-                        Icons.call_received_outlined,
-                        size: 10,
-                        color: Colors.white,
-                      )
-                    ],
-                  ),
-                  trailing: Icon(
-                    Icons.call,
-                    color: Colors.green,
-                  ),
-                ),
-                ListTile(
-                  leading: CircleAvatar(
-                    foregroundImage: AssetImage('assets/images/bohra.png'),
-                  ),
-                  title: Text(
-                    'Ayush Bohra',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
-                  subtitle: Row(children: [
-                    Text(
-                      '12 September,12:15 pm',
-                      style: TextStyle(color: Colors.grey, fontSize: 10),
+                    ListTile(
+                      title: Text('Recent'),
                     ),
-                    Icon(
-                      Icons.call_received_outlined,
-                      size: 10,
-                      color: Colors.white,
-                    )
-                  ]),
-                  trailing: Icon(
-                    Icons.call,
-                    color: Colors.green,
-                  ),
-                ),
-                ListTile(
-                  leading: CircleAvatar(
-                    foregroundImage: AssetImage('assets/images/me.png'),
-                  ),
-                  title: Text(
-                    'Aditya Mhatre',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
-                  subtitle: Row(
-                    children: [
-                      Text(
-                        '1 August,10:43 am',
-                        style: TextStyle(color: Colors.grey, fontSize: 10),
+                    ListTile(
+                      leading: CircleAvatar(
+                        foregroundImage: AssetImage('assets/images/kunal.png'),
                       ),
-                      Icon(
-                        Icons.call_made_outlined,
-                        size: 10,
-                        color: Colors.white,
-                      )
-                    ],
-                  ),
-                  trailing: Icon(
-                    Icons.call,
-                    color: Colors.green,
-                  ),
-                ),
-                ListTile(
-                  leading: CircleAvatar(
-                    foregroundImage: AssetImage('assets/images/kunal.png'),
-                  ),
-                  title: Text(
-                    'Kunal Patil',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.red),
-                  ),
-                  subtitle: Row(
-                    children: [
-                      Text(
-                        '5 minutes ago',
-                        style: TextStyle(color: Colors.grey, fontSize: 10),
+                      title: Text(
+                        'Sanket Dhuri',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.red),
                       ),
-                      Icon(
-                        Icons.phone_missed_outlined,
-                        size: 10,
-                        color: Colors.red,
+                      subtitle: Row(
+                        children: [
+                          Text(
+                            '5 minutes ago',
+                            style: TextStyle(color: Colors.grey, fontSize: 10),
+                          ),
+                          Icon(
+                            Icons.phone_missed_outlined,
+                            size: 10,
+                            color: Colors.red,
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  trailing: Icon(
-                    Icons.call,
-                    color: Colors.green,
-                  ),
-                ),
-                ListTile(
-                  leading: CircleAvatar(
-                    foregroundImage: AssetImage('assets/images/vinit.png'),
-                  ),
-                  title: Text(
-                    'Vinit Solanki',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
-                  subtitle: Row(
-                    children: [
-                      Text(
-                        ' 20 minutes ago',
-                        style: TextStyle(color: Colors.grey, fontSize: 10),
+                      trailing: Icon(
+                        Icons.call,
+                        color: Colors.green,
                       ),
-                      Icon(
-                        Icons.call_received_outlined,
-                        size: 10,
-                        color: Colors.white,
-                      )
-                    ],
-                  ),
-                  trailing: Icon(
-                    Icons.call,
-                    color: Colors.green,
-                  ),
-                ),
-                ListTile(
-                  leading: CircleAvatar(
-                    foregroundImage: AssetImage('assets/images/bohra.png'),
-                  ),
-                  title: Text(
-                    'Ayush Bohra',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
-                  subtitle: Row(children: [
-                    Text(
-                      '12 September,12:15 pm',
-                      style: TextStyle(color: Colors.grey, fontSize: 10),
                     ),
-                    Icon(
-                      Icons.call_received_outlined,
-                      size: 10,
-                      color: Colors.white,
-                    )
-                  ]),
-                  trailing: Icon(
-                    Icons.call,
-                    color: Colors.green,
-                  ),
-                ),
-                ListTile(
-                  leading: CircleAvatar(
-                    foregroundImage: AssetImage('assets/images/me.png'),
-                  ),
-                  title: Text(
-                    'Aditya Mhatre',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
-                  subtitle: Row(
-                    children: [
-                      Text(
-                        '1 August,10:43 am',
-                        style: TextStyle(color: Colors.grey, fontSize: 10),
+                    ListTile(
+                      leading: CircleAvatar(
+                        foregroundImage: AssetImage('assets/images/vinit.png'),
                       ),
-                      Icon(
-                        Icons.call_made_outlined,
-                        size: 10,
-                        color: Colors.white,
-                      )
-                    ],
-                  ),
-                  trailing: Icon(
-                    Icons.call,
-                    color: Colors.green,
-                  ),
-                ),
-                ListTile(
-                  leading: CircleAvatar(
-                    foregroundImage: AssetImage('assets/images/kunal.png'),
-                  ),
-                  title: Text(
-                    'Kunal Patil',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.red),
-                  ),
-                  subtitle: Row(
-                    children: [
-                      Text(
-                        '5 minutes ago',
-                        style: TextStyle(color: Colors.grey, fontSize: 10),
+                      title: Text(
+                        'Vinit Solanki',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
                       ),
-                      Icon(
-                        Icons.phone_missed_outlined,
-                        size: 10,
-                        color: Colors.red,
+                      subtitle: Row(
+                        children: [
+                          Text(
+                            ' 20 minutes ago',
+                            style: TextStyle(color: Colors.grey, fontSize: 10),
+                          ),
+                          Icon(
+                            Icons.call_received_outlined,
+                            size: 10,
+                            color: Colors.white,
+                          )
+                        ],
                       ),
-                    ],
-                  ),
-                  trailing: Icon(
-                    Icons.call,
-                    color: Colors.green,
-                  ),
-                ),
-                ListTile(
-                  leading: CircleAvatar(
-                    foregroundImage: AssetImage('assets/images/vinit.png'),
-                  ),
-                  title: Text(
-                    'Vinit Solanki',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
-                  subtitle: Row(
-                    children: [
-                      Text(
-                        ' 20 minutes ago',
-                        style: TextStyle(color: Colors.grey, fontSize: 10),
+                      trailing: Icon(
+                        Icons.call,
+                        color: Colors.green,
                       ),
-                      Icon(
-                        Icons.call_received_outlined,
-                        size: 10,
-                        color: Colors.white,
-                      )
-                    ],
-                  ),
-                  trailing: Icon(
-                    Icons.call,
-                    color: Colors.green,
-                  ),
-                ),
-                ListTile(
-                  leading: CircleAvatar(
-                    foregroundImage: AssetImage('assets/images/bohra.png'),
-                  ),
-                  title: Text(
-                    'Ayush Bohra',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
-                  subtitle: Row(children: [
-                    Text(
-                      '12 September,12:15 pm',
-                      style: TextStyle(color: Colors.grey, fontSize: 10),
                     ),
-                    Icon(
-                      Icons.call_received_outlined,
-                      size: 10,
-                      color: Colors.white,
-                    )
-                  ]),
-                  trailing: Icon(
-                    Icons.call,
-                    color: Colors.green,
-                  ),
-                ),
-                ListTile(
-                  leading: CircleAvatar(
-                    foregroundImage: AssetImage('assets/images/me.png'),
-                  ),
-                  title: Text(
-                    'Aditya Mhatre',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
-                  subtitle: Row(
-                    children: [
-                      Text(
-                        '1 August,10:43 am',
-                        style: TextStyle(color: Colors.grey, fontSize: 10),
+                    ListTile(
+                      leading: CircleAvatar(
+                        foregroundImage: AssetImage('assets/images/bohra.png'),
                       ),
-                      Icon(
-                        Icons.call_made_outlined,
-                        size: 10,
-                        color: Colors.white,
-                      )
-                    ],
-                  ),
-                  trailing: Icon(
-                    Icons.call,
-                    color: Colors.green,
-                  ),
-                )
-              ])),
+                      title: Text(
+                        'Ayush Bohra',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
+                      subtitle: Row(children: [
+                        Text(
+                          '12 September,12:15 pm',
+                          style: TextStyle(color: Colors.grey, fontSize: 10),
+                        ),
+                        Icon(
+                          Icons.call_received_outlined,
+                          size: 10,
+                          color: Colors.white,
+                        )
+                      ]),
+                      trailing: Icon(
+                        Icons.call,
+                        color: Colors.green,
+                      ),
+                    ),
+                    ListTile(
+                      leading: CircleAvatar(
+                        foregroundImage: AssetImage('assets/images/me.png'),
+                      ),
+                      title: Text(
+                        'Aditya Mhatre',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
+                      subtitle: Row(
+                        children: [
+                          Text(
+                            '1 August,10:43 am',
+                            style: TextStyle(color: Colors.grey, fontSize: 10),
+                          ),
+                          Icon(
+                            Icons.call_made_outlined,
+                            size: 10,
+                            color: Colors.white,
+                          )
+                        ],
+                      ),
+                      trailing: Icon(
+                        Icons.call,
+                        color: Colors.green,
+                      ),
+                    ),
+                    ListTile(
+                      leading: CircleAvatar(
+                        foregroundImage: AssetImage('assets/images/kunal.png'),
+                      ),
+                      title: Text(
+                        'Kunal Patil',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.red),
+                      ),
+                      subtitle: Row(
+                        children: [
+                          Text(
+                            '5 minutes ago',
+                            style: TextStyle(color: Colors.grey, fontSize: 10),
+                          ),
+                          Icon(
+                            Icons.phone_missed_outlined,
+                            size: 10,
+                            color: Colors.red,
+                          ),
+                        ],
+                      ),
+                      trailing: Icon(
+                        Icons.call,
+                        color: Colors.green,
+                      ),
+                    ),
+                    ListTile(
+                      leading: CircleAvatar(
+                        foregroundImage: AssetImage('assets/images/vinit.png'),
+                      ),
+                      title: Text(
+                        'Vinit Solanki',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
+                      subtitle: Row(
+                        children: [
+                          Text(
+                            ' 20 minutes ago',
+                            style: TextStyle(color: Colors.grey, fontSize: 10),
+                          ),
+                          Icon(
+                            Icons.call_received_outlined,
+                            size: 10,
+                            color: Colors.white,
+                          )
+                        ],
+                      ),
+                      trailing: Icon(
+                        Icons.call,
+                        color: Colors.green,
+                      ),
+                    ),
+                    ListTile(
+                      leading: CircleAvatar(
+                        foregroundImage: AssetImage('assets/images/bohra.png'),
+                      ),
+                      title: Text(
+                        'Ayush Bohra',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
+                      subtitle: Row(children: [
+                        Text(
+                          '12 September,12:15 pm',
+                          style: TextStyle(color: Colors.grey, fontSize: 10),
+                        ),
+                        Icon(
+                          Icons.call_received_outlined,
+                          size: 10,
+                          color: Colors.white,
+                        )
+                      ]),
+                      trailing: Icon(
+                        Icons.call,
+                        color: Colors.green,
+                      ),
+                    ),
+                    ListTile(
+                      leading: CircleAvatar(
+                        foregroundImage: AssetImage('assets/images/me.png'),
+                      ),
+                      title: Text(
+                        'Aditya Mhatre',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
+                      subtitle: Row(
+                        children: [
+                          Text(
+                            '1 August,10:43 am',
+                            style: TextStyle(color: Colors.grey, fontSize: 10),
+                          ),
+                          Icon(
+                            Icons.call_made_outlined,
+                            size: 10,
+                            color: Colors.white,
+                          )
+                        ],
+                      ),
+                      trailing: Icon(
+                        Icons.call,
+                        color: Colors.green,
+                      ),
+                    ),
+                    ListTile(
+                      leading: CircleAvatar(
+                        foregroundImage: AssetImage('assets/images/kunal.png'),
+                      ),
+                      title: Text(
+                        'Kunal Patil',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.red),
+                      ),
+                      subtitle: Row(
+                        children: [
+                          Text(
+                            '5 minutes ago',
+                            style: TextStyle(color: Colors.grey, fontSize: 10),
+                          ),
+                          Icon(
+                            Icons.phone_missed_outlined,
+                            size: 10,
+                            color: Colors.red,
+                          ),
+                        ],
+                      ),
+                      trailing: Icon(
+                        Icons.call,
+                        color: Colors.green,
+                      ),
+                    ),
+                    ListTile(
+                      leading: CircleAvatar(
+                        foregroundImage: AssetImage('assets/images/vinit.png'),
+                      ),
+                      title: Text(
+                        'Vinit Solanki',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
+                      subtitle: Row(
+                        children: [
+                          Text(
+                            ' 20 minutes ago',
+                            style: TextStyle(color: Colors.grey, fontSize: 10),
+                          ),
+                          Icon(
+                            Icons.call_received_outlined,
+                            size: 10,
+                            color: Colors.white,
+                          )
+                        ],
+                      ),
+                      trailing: Icon(
+                        Icons.call,
+                        color: Colors.green,
+                      ),
+                    ),
+                    ListTile(
+                      leading: CircleAvatar(
+                        foregroundImage: AssetImage('assets/images/bohra.png'),
+                      ),
+                      title: Text(
+                        'Ayush Bohra',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
+                      subtitle: Row(children: [
+                        Text(
+                          '12 September,12:15 pm',
+                          style: TextStyle(color: Colors.grey, fontSize: 10),
+                        ),
+                        Icon(
+                          Icons.call_received_outlined,
+                          size: 10,
+                          color: Colors.white,
+                        )
+                      ]),
+                      trailing: Icon(
+                        Icons.call,
+                        color: Colors.green,
+                      ),
+                    ),
+                    ListTile(
+                      leading: CircleAvatar(
+                        foregroundImage: AssetImage('assets/images/me.png'),
+                      ),
+                      title: Text(
+                        'Aditya Mhatre',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
+                      subtitle: Row(
+                        children: [
+                          Text(
+                            '1 August,10:43 am',
+                            style: TextStyle(color: Colors.grey, fontSize: 10),
+                          ),
+                          Icon(
+                            Icons.call_made_outlined,
+                            size: 10,
+                            color: Colors.white,
+                          )
+                        ],
+                      ),
+                      trailing: Icon(
+                        Icons.call,
+                        color: Colors.green,
+                      ),
+                    )
+                  ])),
             ]),
           ),
         ));

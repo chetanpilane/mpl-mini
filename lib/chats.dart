@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp/feature/welcome/widgets/info.dart';
 
+import 'chattingScreen.dart';
+
 class ContactsList extends StatelessWidget {
   const ContactsList({Key? key}) : super(key: key);
   @override
@@ -11,7 +13,14 @@ class ContactsList extends StatelessWidget {
           itemCount: info.length,
           itemBuilder: (context, index) {
             return InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyHomePage(),
+                  ),
+                );
+              },
               child: ListTile(
                 title: Text(
                   info[index]['name'].toString(),
