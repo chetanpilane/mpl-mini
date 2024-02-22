@@ -177,9 +177,105 @@ class _mainCallsScreenState extends State<mainCallsScreen> {
                     ),
                   ),
                 ])),
-            Center(
-              child: Text('chats content'),
-            ),
+            Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Column(children: [
+                  Visibility(
+                    visible: showSearchBox,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        onChanged: searchContacts,
+                        decoration: InputDecoration(
+                          hintText: 'Search contacts',
+                          prefixIcon: Icon(Icons.search),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: filteredContacts.length,
+                      itemBuilder: (context, index) {
+                        filteredContacts[index]['isStatus'] ==
+                            "true"
+                            ?
+                         InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MyHomePage(
+                                    filteredContacts[index]['name'].toString(),
+                                    filteredContacts[index]['message']
+                                        .toString()),
+                              ),
+                            );
+                          },
+                          child: ListTile(
+                            title: Text(
+                              filteredContacts[index]['name'].toString(),
+                              style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color.fromARGB(255, 230, 227, 227)),
+                            ),
+                            subtitle: Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Text(
+                                filteredContacts[index]['message'].toString(),
+                                style: const TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.normal),
+                              ),
+                            ),
+                            leading: filteredContacts[index]['isStatus'] ==
+                                "true"
+                                ? InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MoreStories(),
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors
+                                      .green, // Change the color to your desired green color
+                                ),
+                                padding: EdgeInsets.all(
+                                    3), // Add padding to control the size of the green circle
+                                child: CircleAvatar(
+                                  radius:
+                                  30, // Set the radius of the CircleAvatar
+                                  backgroundImage: NetworkImage(
+                                    filteredContacts[index]['profilePic']
+                                        .toString(),
+                                  ),
+                                ),
+                              ),
+                            )
+                                : CircleAvatar(
+                              radius: 30,
+                              backgroundImage: NetworkImage(
+                                filteredContacts[index]['profilePic']
+                                    .toString(),
+                              ),
+                            ),
+                            trailing: Text(
+                              filteredContacts[index]['time'].toString(),
+                              style: const TextStyle(
+                                  fontSize: 13, fontWeight: FontWeight.normal),
+                            ),
+                          ),
+                        ): Container();
+                      },
+                    ),
+                  ),
+                ])),
             Center(
                 child: ListView(children: <Widget>[
               ListTile(
